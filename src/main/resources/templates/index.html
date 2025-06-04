@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Menú Principal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="container menu-container">
+    <div class="text-center">
+        <h2 class="my-4">Menú Principal</h2>
+        <div class="d-grid gap-3">
+            <a th:href="@{/list-trabajador}" class="btn btn btn-primary btm-sm">Mantenimiento Trabajadores</a>
+            <a th:href="@{/list-puesto}" class="btn btn btn-primary btm-sm">Mantenimiento Puestos</a>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
