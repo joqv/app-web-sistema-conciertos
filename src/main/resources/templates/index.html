@@ -12,16 +12,15 @@
             crossorigin="anonymous"></script>
 </head>
 
-<body>
-<div class="container menu-container">
-    <div class="text-center">
-        <h2 class="my-4">Menú Principal</h2>
-        <div class="d-grid gap-3">
-            <a th:href="@{/list-trabajador}" class="btn btn btn-primary btm-sm">Mantenimiento Trabajadores</a>
-            <a th:href="@{/list-puesto}" class="btn btn btn-primary btm-sm">Mantenimiento Puestos</a>
+<body class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="container text-center">
+        <h2 class="my-4">Bienvenido a la Aplicación - Shows App</h2>
+
+        <div class="d-flex flex-column mx-auto" style="max-width: 300px">
+            <a th:href="@{/total-reservas}" class="btn btn-primary mb-2">Ver total de reservas</a>
+            <a th:href="@{/perfil}" class="btn btn-primary mb-2">Ver mi cuenta de usuario</a>
         </div>
     </div>
-</div>
 </body>
 
 </html>
