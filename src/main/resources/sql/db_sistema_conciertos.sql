@@ -1,25 +1,25 @@
 CREATE TABLE IF NOT EXISTS usuarios (
-    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-    nombreUsuario VARCHAR(255) NOT NULL,
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_usuario VARCHAR(255) NOT NULL,
     telefono VARCHAR(20),
     ruc VARCHAR(11) UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS palcos (
-    idPalco INT PRIMARY KEY AUTO_INCREMENT,
-    nombrePalco VARCHAR(255) NOT NULL,
+    id_palco INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_palco VARCHAR(255) NOT NULL,
     aforo INT NOT NULL,
     ubicacion VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS reservas (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    idUsuario INT NOT NULL,
-    idPalco INT NOT NULL,
+    id_reserva INT PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT NOT NULL,
+    id_palco INT NOT NULL,
     fecha DATE NOT NULL,
-    horaInicio TIME NOT NULL,
-    horaFinal TIME NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_final TIME NOT NULL,
     estado VARCHAR(50) NOT NULL,
-    FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario),
-    FOREIGN KEY (idPalco) REFERENCES palcos(idPalco)
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+    FOREIGN KEY (id_palco) REFERENCES palcos(id_palco)
 );
