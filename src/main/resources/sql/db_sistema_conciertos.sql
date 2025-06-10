@@ -1,18 +1,25 @@
-CREATE TABLE IF NOT EXISTS usuarios (
+-- Tabla de usuarios
+CREATE TABLE usuarios (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nombre_usuario VARCHAR(255) NOT NULL,
     telefono VARCHAR(20),
-    ruc VARCHAR(11) UNIQUE
+    ruc VARCHAR(11) UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    estado VARCHAR(20) DEFAULT 'ACTIVO',
+    rol VARCHAR(20) NOT NULL DEFAULT 'USUARIO'
 );
 
-CREATE TABLE IF NOT EXISTS palcos (
+-- Tabla de palcos
+CREATE TABLE palcos (
     id_palco INT PRIMARY KEY AUTO_INCREMENT,
     nombre_palco VARCHAR(255) NOT NULL,
     aforo INT NOT NULL,
     ubicacion VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS reservas (
+-- Tabla de reservas
+CREATE TABLE reservas (
     id_reserva INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT NOT NULL,
     id_palco INT NOT NULL,
@@ -23,3 +30,13 @@ CREATE TABLE IF NOT EXISTS reservas (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_palco) REFERENCES palcos(id_palco)
 );
+
+
+DELIMITER //
+
+CREATE PROCEDURE listarUsuariosActivos()
+BEGIN
+    SELECT * FROM usuarios WHERE estado = 'ACTIVO';
+END //
+
+DELIMITER ;

@@ -1,0 +1,29 @@
+body {
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.card h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+  background-color: #3a0ca3;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #2f089b;
+}
