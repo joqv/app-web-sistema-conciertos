@@ -1,3 +1,9 @@
+-- Tabla de roles
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
 -- Tabla de usuarios
 CREATE TABLE usuarios (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -30,6 +36,7 @@ CREATE TABLE reservas (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_palco) REFERENCES palcos(id_palco)
 );
+
 
 
 DELIMITER //
