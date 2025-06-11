@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservaService {
@@ -15,5 +16,16 @@ public class ReservaService {
 
     public List<Reserva> getReservas() {
         return reservaRepository.findAll();
+    }
+
+    public Reserva obtenerReserva(Long id) throws Exception {
+
+        Optional<Reserva> reserva = reservaRepository.findById(id);
+
+        if (reserva.isPresent()) {
+            return reserva.get();
+        } else {
+            throw new Exception("Reserva no encontrada. ID: "+ id);
+        }
     }
 }

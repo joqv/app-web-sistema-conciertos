@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalles de la Reserva</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f0f2f5;
+    }
+
+    .container.mt-5 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    /* Estilos específicos para la card de detalles */
+    .detail-card {
+        max-width: 700px; /* Ancho máximo para la card de detalles */
+        margin: 0 auto; /* Centrar la card */
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 1rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Sombra más pronunciada */
+        background-color: #ffffff;
+        padding: 2rem; /* Más padding interno */
+    }
+
+    .detail-card .card-header-custom {
+        background-color: #007bff; /* Un azul más profesional para el header */
+        background-image: linear-gradient(to right, #007bff 0%, #0056b3 100%); /* Degradado azul */
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 0.75rem; /* Bordes ligeramente redondeados */
+        margin: -2rem -2rem 2rem -2rem; /* Margen negativo para que se salga del padding y se vea más grande */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.3rem;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3); /* Sombra para el header */
+    }
+
+    .detail-info-group {
+        margin-bottom: 1.2rem; /* Espacio entre cada grupo de información */
+    }
+
+    .detail-info-group strong {
+        display: block; /* Etiqueta en su propia línea */
+        color: #344767;
+        font-size: 1.05rem;
+        margin-bottom: 0.3rem;
+        font-weight: 600;
+    }
+
+    .detail-info-group span {
+        color: #495057;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .detail-info-group i {
+        margin-right: 0.6rem;
+        color: #8898aa;
+    }
+
+    .detail-info-group .bi-person-circle,
+    .detail-info-group .bi-building,
+    .detail-info-group .bi-geo-alt,
+    .detail-info-group .bi-calendar-event,
+    .detail-info-group .bi-clock-fill {
+        color: #007bff; /* Color principal para iconos grandes */
+        font-size: 1.2rem;
+    }
+
+    /* Badge de estado en la vista de detalles */
+    .badge-detail-estado {
+        font-size: 1rem;
+        padding: 0.6em 1em;
+        border-radius: 1rem;
+        font-weight: 600;
+        min-width: 8rem;
+        text-align: center;
+    }
+
+    /* Colores de badges (mantener los de tu diseño actual) */
+    .badge-success { background-color: #28a745; color: white; }
+    .badge-warning { background-color: #ffc107; color: #343a40; }
+    .badge-danger { background-color: #dc3545; color: white; }
+    .badge-info { background-color: #17a2b8; color: white; }
+
+    /* Botones de acción en la vista de detalles */
+    .detail-actions {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+    }
+
+    .btn-detail-action {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+        font-weight: 500;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark px-4">
+  <span class="navbar-brand mb-0 h4">Panel de Administración</span>
+  <span class="text-white" th:text="'Bienvenido, ' + ${usuarioLogueado}">Bienvenido, Admin</span>
+</nav>
+
+<div class="container mt-4">
+  <div class="detail-card">
+    <div class="card-header-custom">
+      <span>Detalles de la Reserva #<span th:text="${reserva.idReserva}"></span></span>
+      <span th:classappend="${reserva.estado == 'Confirmada' ? 'badge-success' : (reserva.estado == 'Pendiente' ? 'badge-warning' : (reserva.estado == 'Cancelada' ? 'badge-danger' : 'badge-info'))}" class="badge badge-detail-estado" th:text="${reserva.estado}"></span>
+    </div>
+
+    <div class="card-body-custom">
+      <div class="detail-info-group">
+        <strong><i class="bi bi-person-circle"></i>Nombre del Usuario:</strong>
+        <span th:text="${reserva.usuario.nombreUsuario}"></span>
+      </div>
+      <div class="detail-info-group">
+        <strong><i class="bi bi-building"></i>RUC del Usuario:</strong>
+        <span th:text="${reserva.usuario.ruc}"></span>
+      </div>
+      <div class="detail-info-group">
+        <strong><i class="bi bi-geo-alt"></i>Palco Reservado:</strong>
+        <span th:text="${reserva.palco.nombrePalco}"></span>
+      </div>
+      <div class="detail-info-group">
+        <strong><i class="bi bi-calendar-event"></i>Fecha de la Reserva:</strong>
+        <span th:text="${reserva.fecha}"></span>
+      </div>
+      <div class="detail-info-group">
+        <strong><i class="bi bi-clock-fill"></i>Horario:</strong>
+        <span th:text="${reserva.horaInicio} + ' - ' + ${reserva.horaFinal}"></span>
+      </div>
+    </div>
+
+    <div class="detail-actions">
+      <a th:href="@{/edit-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-warning btn-detail-action"><i class="bi bi-pencil me-2"></i>Editar</a>
+      <a th:href="@{/remove-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-danger btn-detail-action"><i class="bi bi-trash3 me-2"></i>Eliminar</a>
+      <a href="/list-reserva" class="btn btn-secondary btn-detail-action"><i class="bi bi-arrow-left me-2"></i>Volver al Listado</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
