@@ -187,7 +187,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">Listado de Reservas</h2>
-        <a th:href=@{/new-reserva} type="button" class="btn brn-primary">+ Nueva reserva</a>
+        <a th:href=@{/new-reserva} type="button" class="btn btn-primary">+ Nueva reserva</a>
     </div>
 
     <div class="row" th:if="${#lists.isEmpty(reservaList)}">
@@ -215,7 +215,7 @@
                 <div class="card-footer">
                     <a th:href="@{/view-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-primary btn-action-icon" title="Ver detalles"><i class="bi bi-eye"></i></a>
                     <a th:href="@{/edit-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-warning btn-action-icon" title="Editar reserva"><i class="bi bi-pencil"></i></a>
-                    <a th:href="@{/remove-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-danger btn-action-icon" title="Eliminar reserva"><i class="bi bi-trash3"></i></a>
+                    <a th:href="@{/eliminar-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-danger btn-action-icon" title="Eliminar reserva"><i class="bi bi-trash3"></i></a>
                 </div>
             </div>
         </div>

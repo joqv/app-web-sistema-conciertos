@@ -108,10 +108,17 @@
 
     <form th:action="@{/insert-reserva}" th:object="${reserva}" method="post">
       <div class="mb-3">
-        <label for="nombreUsuario" class="form-label">Nombre del Usuario</label>
+        <label for="nombreUsuario" class="form-label">Usuario</label>
         <div class="input-group">
           <span class="input-group-text"><i class="bi bi-person-circle"></i></span>
-          <input type="text" class="form-control" id="nombreUsuario" th:field="*{usuario.nombreUsuario}" required>
+          <select class="form-select" id="nombreUsuario" th:field="*{usuario.idUsuario}" required>
+            <option value="">Seleccione un usuario</option>
+            <option th:each="p : ${selectUsuarios}"
+                    th:value="${p.idUsuario}"
+                    th:text="${p.nombreUsuario}">
+              Nombre de Usuario
+            </option>
+          </select>
         </div>
       </div>
 
@@ -122,6 +129,7 @@
           <input type="text" class="form-control" id="rucUsuario" th:field="*{usuario.ruc}" required>
         </div>
       </div>
+
 
       <div class="mb-3">
         <label for="nombrePalco" class="form-label">Palco</label>
