@@ -33,6 +33,7 @@ CREATE TABLE reservas (
     hora_inicio TIME NOT NULL,
     hora_final TIME NOT NULL,
     estado VARCHAR(50) NOT NULL,
+    activo VARCHAR(10) NOT NULL,
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
     FOREIGN KEY (id_palco) REFERENCES palcos(id_palco)
 );

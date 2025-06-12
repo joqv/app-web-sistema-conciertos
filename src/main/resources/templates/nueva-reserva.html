@@ -106,7 +106,7 @@
       Crear Nueva Reserva
     </div>
 
-    <form th:action="@{/insert-reserva}" th:object="${reserva}" method="post">
+    <form th:action="@{/agregar-reserva}" th:object="${reserva}" method="post">
       <div class="mb-3">
         <label for="nombreUsuario" class="form-label">Usuario</label>
         <div class="input-group">
@@ -115,7 +115,8 @@
             <option value="">Seleccione un usuario</option>
             <option th:each="p : ${selectUsuarios}"
                     th:value="${p.idUsuario}"
-                    th:text="${p.nombreUsuario}">
+                    th:text="${p.nombreUsuario}"
+                    th:attr="data-ruc=${p.ruc}">
               Nombre de Usuario
             </option>
           </select>
@@ -126,7 +127,7 @@
         <label for="rucUsuario" class="form-label">RUC del Usuario</label>
         <div class="input-group">
           <span class="input-group-text"><i class="bi bi-building"></i></span>
-          <input type="text" class="form-control" id="rucUsuario" th:field="*{usuario.ruc}" required>
+          <input type="text" class="form-control" id="rucUsuario" th:field="*{usuario.ruc}" required disabled>
         </div>
       </div>
 
@@ -187,13 +188,30 @@
       </div>
 
       <div class="form-actions">
-        <a th:href="@{/list-reserva}" class="btn btn-secondary btn-form-action"><i class="bi bi-x-circle me-2"></i>Cancelar</a>
-        <button type="submit" class="btn btn-success btn-form-action"><i class="bi bi-plus-circle me-2"></i>Crear Reserva</button>
+        <a th:href="@{/listar-reserva}" class="btn btn-secondary btn-form-action"><i class="bi bi-x-circle me-2"></i>Cancelar</a>
+        <button type="submit" class="btn btn-success btn-form-action" onclick="return confirm('¿Deseas agregar esta nueva reserva?');"><i class="bi bi-plus-circle me-2"></i>Crear Reserva</button>
       </div>
     </form>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const selectUsuario = document.getElementById('nombreUsuario');
+    const inputRucUsuario = document.getElementById('rucUsuario');
+
+    selectUsuario.addEventListener('change', function() {
+      const selectedOption = selectUsuario.options[selectUsuario.selectedIndex];
+      const ruc = selectedOption.getAttribute('data-ruc');
+
+      if (ruc) {
+        inputRucUsuario.value = ruc;
+      } else {
+        inputRucUsuario.value = ''; // Limpiar si no hay RUC (ej. si selecciona "Seleccione un usuario")
+      }
+    });
+  });
+</script>
 </body>
 </html>

@@ -187,7 +187,10 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">Listado de Reservas</h2>
-        <a th:href=@{/new-reserva} type="button" class="btn btn-primary">+ Nueva reserva</a>
+        <div>
+            <a th:href=@{/nueva-reserva} type="button" class="btn btn-primary">+ Nueva reserva</a>
+            <a th:href=@{/inicio} type="button" class="btn btn-secondary mx-1"> < Regresar</a>
+        </div>
     </div>
 
     <div class="row" th:if="${#lists.isEmpty(reservaList)}">
@@ -207,15 +210,15 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><i class="bi bi-person-circle"></i><span th:text="${reserva.usuario.nombreUsuario}"></span></h5>
-                    <p class="card-text"><strong><i class="bi bi-building"></i>RUC:</strong> <span th:text="${reserva.usuario.ruc}"></span></p>
-                    <p class="card-text"><strong><i class="bi bi-geo-alt"></i>Palco:</strong> <span th:text="${reserva.palco.nombrePalco}"></span></p>
-                    <p class="card-text"><strong><i class="bi bi-calendar-event"></i>Fecha:</strong> <span th:text="${reserva.fecha}"></span></p>
-                    <p class="card-text"><strong><i class="bi bi-clock-fill"></i>Hora:</strong> <span th:text="${reserva.horaInicio} + ' - ' + ${reserva.horaFinal}"></span></p>
+                    <p class="card-text"><strong><i class="bi bi-building"></i>RUC: </strong> <span class="px-1" th:text="${reserva.usuario.ruc}"></span></p>
+                    <p class="card-text"><strong><i class="bi bi-geo-alt"></i>Palco: </strong> <span class="px-1" th:text="${reserva.palco.nombrePalco}"></span></p>
+                    <p class="card-text"><strong><i class="bi bi-calendar-event"></i>Fecha: </strong> <span class="px-1" th:text=" ${reserva.fecha}"></span></p>
+                    <p class="card-text"><strong><i class="bi bi-clock-fill"></i>Hora: </strong> <span class="px-1" th:text=" ${reserva.horaInicio} + ' - ' + ${reserva.horaFinal}"></span></p>
                 </div>
                 <div class="card-footer">
-                    <a th:href="@{/view-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-primary btn-action-icon" title="Ver detalles"><i class="bi bi-eye"></i></a>
-                    <a th:href="@{/edit-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-warning btn-action-icon" title="Editar reserva"><i class="bi bi-pencil"></i></a>
-                    <a th:href="@{/eliminar-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-danger btn-action-icon" title="Eliminar reserva"><i class="bi bi-trash3"></i></a>
+                    <a th:href="@{/ver-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-primary btn-action-icon" title="Ver detalles"><i class="bi bi-eye"></i></a>
+                    <a th:href="@{/editar-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-warning btn-action-icon" title="Editar reserva"><i class="bi bi-pencil"></i></a>
+                    <a th:href="@{/eliminar-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-danger btn-action-icon" title="Eliminar reserva" onclick="return confirm('¿Deseas eliminar esta reservación?');"><i class="bi bi-trash3"></i></a>
                 </div>
             </div>
         </div>

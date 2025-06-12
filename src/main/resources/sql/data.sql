@@ -5,11 +5,11 @@ INSERT INTO roles (nombre) VALUES ('ADMINISTRADOR'), ('USUARIO');
 
 -- Insertar usuarios
 INSERT INTO usuarios (nombre_usuario, telefono, ruc, email, password, estado, rol) VALUES
-('Juan Pérez', '987654321', '10123456789', 'juan@example.com', 'juan123', 'ACTIVO', 'ADMINISTRADOR'),
-('María García', '998877665', '10987654321', 'maria@example.com', 'maria123', 'ACTIVO', 'USUARIO'),
-('Carlos Sánchez', '912345678', '10112233445', 'carlos@example.com', 'carlos123', 'ACTIVO', 'USUARIO'),
-('Ana Torres', '934567890', '10556677889', 'ana@example.com', 'ana123', 'ACTIVO', 'USUARIO'),
-('Luis Ramirez', '956789012', '10998877665', 'luis@example.com', 'luis123', 'ACTIVO', 'USUARIO');
+('Juan Pérez', '987654321', '10123456789', 'juan@example.com', 'juanperez12345', 'ACTIVO', 'ADMINISTRADOR'),
+('María García', '998877665', '10987654321', 'maria@example.com', 'mariagarcia12345', 'ACTIVO', 'USUARIO'),
+('Carlos Sánchez', '912345678', '10112233445', 'carlos@example.com', 'carlossanchez12345', 'ACTIVO', 'USUARIO'),
+('Ana Torres', '934567890', '10556677889', 'ana@example.com', 'anatorres12345', 'ACTIVO', 'USUARIO'),
+('Luis Ramirez', '956789012', '10998877665', 'luis@example.com', 'luisramirez12345', 'ACTIVO', 'USUARIO');
 
 -- Insertar palcos
 INSERT INTO palcos (nombre_palco, aforo, ubicacion) VALUES
@@ -20,10 +20,10 @@ INSERT INTO palcos (nombre_palco, aforo, ubicacion) VALUES
 ('Palco Ejecutivo', 4, 'Zona A, Fila 2');
 
 -- Insertar reservas
-INSERT INTO reservas (id_usuario, id_palco, fecha, hora_inicio, hora_final, estado) VALUES
-(1, 1, '2025-06-10', '19:00:00', '23:00:00', 'Confirmada'),
-(2, 3, '2025-06-12', '18:30:00', '22:30:00', 'Pendiente'),
-(3, 2, '2025-06-15', '20:00:00', '00:00:00', 'Confirmada'),
-(1, 4, '2025-06-18', '17:00:00', '21:00:00', 'Confirmada'),
-(4, 1, '2025-06-20', '19:00:00', '23:00:00', 'Cancelada'),
-(5, 5, '2025-06-22', '21:00:00', '01:00:00', 'Confirmada');
+INSERT INTO reservas (id_usuario, id_palco, fecha, hora_inicio, hora_final, estado, activo) VALUES
+(1, 1, '2025-06-25', '19:00:00', '21:00:00', 'Confirmada', 'ACTIVO'),
+(2, 3, '2025-06-27', '18:30:00', '20:30:00', 'Pendiente', 'ACTIVO'),
+(3, 2, '2025-06-30', '14:20:00', '16:20:00', 'Confirmada', 'ACTIVO'),
+(1, 4, '2025-07-04', '15:0:00', '17:00:00', 'Confirmada', 'ACTIVO'),
+(4, 1, '2025-07-05', '10:00:00', '12:00:00', 'Cancelada', 'ACTIVO'),
+(5, 5, '2025-07-08', '17:00:00', '19:00:00', 'Confirmada', 'ACTIVO');
