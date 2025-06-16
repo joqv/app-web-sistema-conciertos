@@ -7,58 +7,54 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Fuentes */
         body {
-            font-family: 'Poppins', sans-serif; /* Usamos Poppins para un look más moderno */
-            background-color: #f0f2f5; /* Fondo más suave */
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
         }
 
-        /* Contenedor principal */
         .container.mt-5 {
             padding-top: 3rem;
             padding-bottom: 3rem;
         }
 
-        /* Encabezado del listado */
         h2.mb-0 {
-            color: #344767; /* Color de título más oscuro y profesional */
+            color: #344767;
             font-weight: 600;
         }
 
-        /* --- Estilos de las Cards --- */
         .reservation-card {
-            border: 1px solid rgba(0, 0, 0, 0.08); /* Borde sutil para definir la card */
-            border-radius: 1rem; /* Bordes más redondeados */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra más pronunciada pero difuminada */
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transición más suave */
-            margin-bottom: 1.5rem; /* Espacio uniforme entre cards */
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-bottom: 1.5rem;
             overflow: hidden;
-            background-color: #ffffff; /* Fondo blanco para las cards */
+            background-color: #ffffff;
             font-size: 0.9rem;
         }
 
         .reservation-card:hover {
-            transform: translateY(-8px); /* Elevación más notable al pasar el mouse */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra más intensa al hover */
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .card-header {
-            background-color: #4CAF50; /* Un verde más vibrante para el header */
-            background-image: linear-gradient(to right, #55de25 0%, #66BB6A 100%); /* Degradado sutil */
+            background-color: #4CAF50;
+            background-image: linear-gradient(to right, #55de25 0%, #66BB6A 100%);
             color: white;
             border-bottom: none;
-            padding: 1rem 1.25rem; /* Padding generoso */
+            padding: 1rem 1.25rem;
             font-size: 1.05rem;
-            font-weight: 500; /* Peso de fuente ligeramente más ligero */
+            font-weight: 500;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top-left-radius: 1rem; /* Asegura bordes redondeados en el header */
+            border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
         }
 
         .card-body {
-            padding: 1.25rem; /* Más espacio interno */
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -66,64 +62,62 @@
         }
 
         .card-title {
-            color: #212529; /* Un color más oscuro para el nombre de usuario */
-            font-size: 1.15rem; /* Título un poco más grande */
+            color: #212529;
+            font-size: 1.15rem;
             margin-bottom: 1rem;
-            font-weight: 600; /* Negrita para el título */
+            font-weight: 600;
             display: flex;
             align-items: center;
         }
 
         .card-title i {
-            font-size: 1.3rem; /* Icono un poco más grande */
-            margin-right: 0.75rem; /* Más espacio entre icono y texto */
-            color: #4CAF50; /* Color del icono principal */
+            font-size: 1.3rem;
+            margin-right: 0.75rem;
+            color: #4CAF50;
         }
 
         .card-text {
-            margin-bottom: 0.6rem; /* Más espacio entre líneas de texto */
-            font-size: 0.9rem; /* Texto de detalles */
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
             color: #6c757d;
             display: flex;
             align-items: center;
         }
 
         .card-text strong {
-            color: #344767; /* Color más fuerte para las etiquetas */
-            min-width: 4.5rem; /* Ancho mínimo para alinear las etiquetas */
+            color: #344767;
+            min-width: 4.5rem;
             display: inline-block;
         }
 
         .card-text i {
-            margin-right: 0.5rem; /* Espacio entre icono y texto de detalle */
-            color: #8898aa; /* Color sutil para iconos de detalle */
+            margin-right: 0.5rem;
+            color: #8898aa;
         }
 
         .card-footer {
-            background-color: #f8f9fa; /* Fondo más claro para el footer */
-            border-top: 1px solid rgba(0, 0, 0, 0.05); /* Borde sutil para separar el footer */
-            padding: 0.75rem 1.25rem; /* Padding acorde */
+            background-color: #f8f9fa;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.75rem 1.25rem;
             display: flex;
             justify-content: flex-end;
-            gap: 0.6rem; /* Espacio entre botones */
+            gap: 0.6rem;
             margin-top: auto;
-            border-bottom-left-radius: 1rem; /* Asegura bordes redondeados en el footer */
+            border-bottom-left-radius: 1rem;
             border-bottom-right-radius: 1rem;
         }
 
-        /* Botones de acción (solo iconos) */
         .btn-action-icon {
-            width: 38px; /* Ancho fijo para botones cuadrados */
-            height: 38px; /* Altura fija para botones cuadrados */
+            width: 38px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 0.5rem; /* Bordes redondeados para los botones */
-            font-size: 1rem; /* Tamaño del icono */
+            border-radius: 0.5rem;
+            font-size: 1rem;
             transition: all 0.2s ease;
         }
 
-        /* Colores de los botones */
         .btn-outline-primary.btn-action-icon {
             color: #007bff;
             border-color: #007bff;
@@ -139,7 +133,7 @@
         }
         .btn-outline-warning.btn-action-icon:hover {
             background-color: #ffc107;
-            color: #343a40; /* Texto oscuro para el hover de warning */
+            color: #343a40;
         }
 
         .btn-outline-danger.btn-action-icon {
@@ -151,13 +145,12 @@
             color: white;
         }
 
-        /* Badges de estado */
         .badge-estado {
             font-size: 0.85rem;
             padding: 0.4em 0.8em;
-            border-radius: 0.7rem; /* Más redondeado */
-            font-weight: 600; /* Más negrita */
-            min-width: 6rem; /* Ancho mínimo para uniformidad */
+            border-radius: 0.7rem;
+            font-weight: 600;
+            min-width: 6rem;
             text-align: center;
         }
 
@@ -166,7 +159,6 @@
         .badge-danger { background-color: #dc3545; color: white; }
         .badge-info { background-color: #17a2b8; color: white; }
 
-        /* Mensaje de no reservas */
         .alert-info {
             background-color: #e0f7fa;
             color: #006064;

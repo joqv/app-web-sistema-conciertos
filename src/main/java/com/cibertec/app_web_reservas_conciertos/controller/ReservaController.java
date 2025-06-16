@@ -27,7 +27,6 @@ public class ReservaController {
 
         model.addAttribute("reservaList", reservaService.getReservas());
         model.addAttribute("usuarioLogueado", session.getAttribute("usuarioLogueado"));
-
         return "listar-reserva";
     }
 
@@ -42,6 +41,7 @@ public class ReservaController {
 
     @GetMapping("/nueva-reserva")
     private String newReserva(HttpSession session, Model model) {
+
         model.addAttribute("reserva", new Reserva());
         model.addAttribute("selectPalcos", palcoService.getPalcos());
         model.addAttribute("usuarioLogueado", session.getAttribute("usuarioLogueado"));
@@ -58,11 +58,6 @@ public class ReservaController {
         model.addAttribute("selectPalcos", palcoService.getPalcos());
         model.addAttribute("selectUsuarios", usuarioRepository.listarUsuariosActivos());
         model.addAttribute("usuarioLogueado", session.getAttribute("usuarioLogueado"));
-
-        System.out.println(reserva.getFecha());
-        System.out.println(reserva.getHoraInicio());
-        System.out.println(reserva.getHoraFinal());
-
         return "editar-reserva";
     }
 

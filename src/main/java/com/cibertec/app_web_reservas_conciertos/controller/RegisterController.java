@@ -31,7 +31,7 @@ public class RegisterController {
             model.addAttribute("error", "Ya existe un usuario con ese correo.");
             return "register";
         }
-        usuario.setEstado("ACTIVO"); // Aquí se asigna estado antes de guardar
+        usuario.setEstado("ACTIVO");
 
         usuarioRepository.save(usuario);
         return "redirect:/";

@@ -27,10 +27,10 @@ public class Usuario {
     private String password;
 
     @Column(name = "estado")
-    private String estado; // valores posibles: ACTIVO o INACTIVO
+    private String estado;
 
     @Column(name = "rol")
-    private String rol; // valores posibles: ADMINISTRADOR o USUARIO
+    private String rol;
 
 
     public Usuario() {
@@ -74,7 +74,6 @@ public class Usuario {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-
 
     public String getPassword() {
         return password;

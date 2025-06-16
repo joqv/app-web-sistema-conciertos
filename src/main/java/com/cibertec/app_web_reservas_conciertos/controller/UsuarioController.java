@@ -12,6 +12,6 @@ public class UsuarioController {
     public String inicioUsuario(HttpSession session, Model model) {
         String nombre = (String) session.getAttribute("usuarioLogueado");
         model.addAttribute("usuarioLogueado", nombre);
-        return "usuario-inicio"; // aún no existe esta vista, la puedes crear después
+        return "usuario-inicio";
     }
 }

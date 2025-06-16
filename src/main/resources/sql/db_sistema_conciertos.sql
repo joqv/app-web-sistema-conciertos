@@ -1,10 +1,8 @@
--- Tabla de roles
 CREATE TABLE roles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL
 );
 
--- Tabla de usuarios
 CREATE TABLE usuarios (
     id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nombre_usuario VARCHAR(255) NOT NULL,
@@ -16,7 +14,6 @@ CREATE TABLE usuarios (
     rol VARCHAR(20) NOT NULL DEFAULT 'USUARIO'
 );
 
--- Tabla de palcos
 CREATE TABLE palcos (
     id_palco INT PRIMARY KEY AUTO_INCREMENT,
     nombre_palco VARCHAR(255) NOT NULL,
@@ -24,7 +21,6 @@ CREATE TABLE palcos (
     ubicacion VARCHAR(255)
 );
 
--- Tabla de reservas
 CREATE TABLE reservas (
     id_reserva INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT NOT NULL,

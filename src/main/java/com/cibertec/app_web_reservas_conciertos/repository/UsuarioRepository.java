@@ -9,11 +9,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
     Usuario findByEmailAndPassword(String email, String password);
-
     Usuario findByEmail(String email);
-
-
     @Query(value = "CALL listarUsuariosActivos()", nativeQuery = true)
     List<Usuario> listarUsuariosActivos();
 

@@ -17,7 +17,6 @@ import java.util.List;
 @Controller
 public class UsersController {
 
-
     @Autowired
     private RolRepository rolRepository;
 
@@ -28,16 +27,14 @@ public class UsersController {
     public String listarUsuarios(HttpSession session, Model model) {
         System.out.println("🔍 Entrando a /admin/usuarios");
 
-        // Verifica si el rol del usuario es ADMINISTRADOR
         String rol = (String) session.getAttribute("rolUsuario");
         System.out.println("👉 rolUsuario en sesión: " + rol);
 
         if (rol == null || !rol.equals("ADMINISTRADOR")) {
             System.out.println("❌ Rol nulo o no ADMINISTRADOR. Redirigiendo a /acceso-denegado");
-            return "redirect:/acceso-denegado"; // puedes cambiarlo a "/" si no tienes vista de acceso denegado
+            return "redirect:/acceso-denegado";
         }
 
-        // Agrega el nombre del usuario logueado para mostrarlo en la vista
         String nombreUsuario = (String) session.getAttribute("usuarioLogueado");
         System.out.println("👤 usuarioLogueado en sesión: " + nombreUsuario);
         model.addAttribute("usuarioLogueado", nombreUsuario);
@@ -45,11 +42,8 @@ public class UsersController {
         List<Usuario> usuariosActivos = usuarioRepository.listarUsuariosActivos();
         System.out.println("✅ Usuarios activos encontrados: " + usuariosActivos.size());
         model.addAttribute("usuarios", usuariosActivos);
-
         return "usuarios-list";
     }
-
-
 
     @GetMapping("/admin/usuarios/desactivar/{id}")
     public String desactivarUsuario(@PathVariable Long id) {
@@ -84,9 +78,8 @@ public class UsersController {
     @PostMapping("/admin/usuarios/save")
     public String guardarUsuario(@ModelAttribute Usuario usuario) {
         if (usuario.getIdUsuario() == null) {
-            usuario.setEstado("ACTIVO"); // nuevo usuario
+            usuario.setEstado("ACTIVO");
         } else {
-            // obtener el estado actual desde la BD
             Usuario original = usuarioRepository.findById(usuario.getIdUsuario()).orElse(null);
             if (original != null) {
                 usuario.setEstado(original.getEstado());

@@ -18,13 +18,13 @@ public class ReservaService {
     private UsuarioRepository usuarioRepository;
 
     public List<Reserva> getReservas() {
+
         return reservaRepository.findByActivo("ACTIVO");
     }
 
     public Reserva obtenerReserva(Long id) throws Exception {
 
         Optional<Reserva> reserva = reservaRepository.findById(id);
-
         if (reserva.isPresent()) {
             return reserva.get();
         } else {
@@ -41,7 +41,6 @@ public class ReservaService {
     public void actualizarReserva(Reserva reserva) {
 
         reserva.setActivo("ACTIVO");
-
         reservaRepository.save(reserva);
     }
 
@@ -49,9 +48,7 @@ public class ReservaService {
 
         try {
             Optional<Reserva> eReserva = reservaRepository.findById(id);
-
             if (eReserva.isPresent()) {
-
                 eReserva.get().setActivo("INACTIVO");
                 reservaRepository.save(eReserva.get());
             }

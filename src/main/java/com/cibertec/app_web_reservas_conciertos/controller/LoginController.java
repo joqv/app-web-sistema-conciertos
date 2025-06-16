@@ -14,13 +14,11 @@ public class LoginController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // Mostrar el formulario de login
     @GetMapping("/")
     public String mostrarLogin() {
         return "login";
     }
 
-    // Procesar el login
     @PostMapping("/login")
     public String login(@RequestParam String email,
                         @RequestParam String password,
@@ -30,14 +28,13 @@ public class LoginController {
         Usuario usuario = usuarioRepository.findByEmailAndPassword(email, password);
 
         if (usuario != null) {
-            // Guardar nombre y rol en sesión
             session.setAttribute("usuarioLogueado", usuario.getNombreUsuario());
             session.setAttribute("rolUsuario", usuario.getRol());
 
             if ("ADMINISTRADOR".equals(usuario.getRol())) {
-                return "redirect:/inicio"; // vista del admin
+                return "redirect:/inicio";
             } else {
-                return "redirect:/usuario/inicio"; // vista del usuario
+                return "redirect:/usuario/inicio";
             }
         } else {
             model.addAttribute("error", true);
@@ -45,7 +42,6 @@ public class LoginController {
         }
     }
 
-    // Mostrar el menú del administrador
     @GetMapping("/inicio")
     public String mostrarMenu() {
         return "index";
