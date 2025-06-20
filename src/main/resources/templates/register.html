@@ -40,13 +40,13 @@
         <input type="password" class="form-control" id="password" th:field="*{password}" required>
       </div>
 
-      <div class="mb-3 text-start">
-        <label for="rol" class="form-label">Rol</label>
-        <select class="form-select" id="rol" name="rol" th:field="*{rol}" required>
-          <option value="" disabled selected>Seleccione un rol</option>
-          <option th:each="r : ${roles}" th:value="${r.nombre}" th:text="${r.nombre}"></option>
-        </select>
-      </div>
+<!--      <div class="mb-3 text-start">-->
+<!--        <label for="rol" class="form-label">Rol</label>-->
+<!--        <select class="form-select" id="rol" name="rol" th:field="*{rol}" required>-->
+<!--          <option value="" disabled selected>Seleccione un rol</option>-->
+<!--          <option th:each="r : ${roles}" th:value="${r.nombre}" th:text="${r.nombre}"></option>-->
+<!--        </select>-->
+<!--      </div>-->
 
 
       <div class="d-grid">

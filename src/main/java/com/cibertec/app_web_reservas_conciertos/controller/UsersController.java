@@ -46,7 +46,14 @@ public class UsersController {
     }
 
     @GetMapping("/admin/usuarios/desactivar/{id}")
-    public String desactivarUsuario(@PathVariable Long id) {
+    public String desactivarUsuario(HttpSession session, @PathVariable Long id) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
+
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         if (usuario != null) {
             usuario.setEstado("INACTIVO");
@@ -56,7 +63,14 @@ public class UsersController {
     }
 
     @GetMapping("/admin/usuarios/new")
-    public String mostrarFormularioRegistro(Model model) {
+    public String mostrarFormularioRegistro(HttpSession session, Model model) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
+
         model.addAttribute("usuario", new Usuario());
         model.addAttribute("roles", rolRepository.findAll());
         model.addAttribute("titulo", "Registrar Nuevo Usuario");
@@ -64,7 +78,14 @@ public class UsersController {
     }
 
     @GetMapping("/admin/usuarios/edit/{id}")
-    public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
+    public String mostrarFormularioEdicion(HttpSession session, @PathVariable Long id, Model model) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
+
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
         if (usuario == null) {
             return "redirect:/admin/usuarios";
@@ -76,7 +97,14 @@ public class UsersController {
     }
 
     @PostMapping("/admin/usuarios/save")
-    public String guardarUsuario(@ModelAttribute Usuario usuario) {
+    public String guardarUsuario(HttpSession session, @ModelAttribute Usuario usuario) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
+
         if (usuario.getIdUsuario() == null) {
             usuario.setEstado("ACTIVO");
         } else {
@@ -87,11 +115,7 @@ public class UsersController {
         }
         usuarioRepository.save(usuario);
         return "redirect:/admin/usuarios";
-
-
     }
-
-
 }
 
 
