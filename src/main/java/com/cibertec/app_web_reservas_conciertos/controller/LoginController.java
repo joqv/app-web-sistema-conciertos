@@ -18,9 +18,6 @@ public class LoginController {
     @Autowired
     private ReservaService reservaService;
 
-
-
-
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -54,15 +51,13 @@ public class LoginController {
 
 
     @GetMapping("/inicio")
-    public String mostrarMenu(HttpSession session) {
+    public String mostrarMenu(HttpSession session, Model model) {
 
         String rol = (String) session.getAttribute("rolUsuario");
 
         if (rol == null || !rol.equals("ADMINISTRADOR")) {
             return "redirect:/";
         }
-
-    public String mostrarMenu(HttpSession session, Model model) {
         long totalUsuarios = usuarioRepository.count();
         long totalPalcos = palcoService.getPalcos().size();
         long totalReservas = reservaService.getReservas().size();
