@@ -1,0 +1,44 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.dashboard-title {
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.card-stats {
+    border-left: 5px solid #0d6efd;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.card-title {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    color: #cccccc;
+}
+
+.icon-size {
+    font-size: 2.3rem;
+    color: #0d6efd;
+}
+
+.btn-option {
+    font-size: 1.1rem;
+    padding: 12px 24px;
+    border-radius: 6px;
+}
+
+.btn-outline-light {
+    border-color: #ffffff;
+    color: #ffffff;
+}
