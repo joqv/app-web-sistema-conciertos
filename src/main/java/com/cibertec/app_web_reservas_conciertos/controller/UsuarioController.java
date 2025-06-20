@@ -10,6 +10,13 @@ public class UsuarioController {
 
     @GetMapping("/usuario/inicio")
     public String inicioUsuario(HttpSession session, Model model) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("USUARIO")) {
+            return "redirect:/";
+        }
+
         String nombre = (String) session.getAttribute("usuarioLogueado");
         model.addAttribute("usuarioLogueado", nombre);
         return "usuario-inicio";

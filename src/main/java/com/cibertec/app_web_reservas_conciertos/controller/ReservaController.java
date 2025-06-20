@@ -25,7 +25,13 @@ public class ReservaController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping("/listar-reserva")
-    private String listReserva( HttpSession session,Model model) {
+    private String listReserva( HttpSession session, Model model) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
 
         model.addAttribute("reservaList", reservaService.getReservas());
         model.addAttribute("usuarioLogueado", session.getAttribute("usuarioLogueado"));
@@ -35,6 +41,12 @@ public class ReservaController {
     @GetMapping("/ver-reserva/{id}")
     private String viewReserva(HttpSession session,Model model, @PathVariable Long id) throws Exception {
 
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
+
         Reserva reserva = reservaService.obtenerReserva(id);
         model.addAttribute("reserva", reserva);
         model.addAttribute("usuarioLogueado", session.getAttribute("usuarioLogueado"));
@@ -43,6 +55,12 @@ public class ReservaController {
 
     @GetMapping("/nueva-reserva")
     private String newReserva(HttpSession session, Model model) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
 
         model.addAttribute("reserva", new Reserva());
         model.addAttribute("selectPalcos", palcoService.getPalcos());
@@ -54,6 +72,12 @@ public class ReservaController {
     @GetMapping("/editar-reserva/{id}")
     private String editarReserva(HttpSession session, @PathVariable Long id, Model model) throws Exception {
 
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
+
         Reserva reserva = reservaService.obtenerReserva(id);
 
         model.addAttribute("reserva", reserva);
@@ -64,14 +88,26 @@ public class ReservaController {
     }
 
     @PostMapping("/agregar-reserva")
-    private String agregarReserva(@ModelAttribute Reserva reserva) {
+    private String agregarReserva(HttpSession session,@ModelAttribute Reserva reserva) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
 
         reservaService.agregarReserva(reserva);
         return "redirect:/listar-reserva";
     }
 
     @PostMapping("/actualizar-reserva")
-    private String actualizarReserva(@ModelAttribute Reserva reserva) {
+    private String actualizarReserva(HttpSession session, @ModelAttribute Reserva reserva) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
 
         System.out.println("Reserva: "+ reserva);
         reservaService.actualizarReserva(reserva);
@@ -79,7 +115,13 @@ public class ReservaController {
     }
 
     @GetMapping("/eliminar-reserva/{id}")
-    private String eliminarReserva(@PathVariable Long id) {
+    private String eliminarReserva(HttpSession session,@PathVariable Long id) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
 
         reservaService.eliminarReserva(id);
 

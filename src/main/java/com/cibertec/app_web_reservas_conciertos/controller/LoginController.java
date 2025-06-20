@@ -53,10 +53,15 @@ public class LoginController {
     }
 
 
-
-
-
     @GetMapping("/inicio")
+    public String mostrarMenu(HttpSession session) {
+
+        String rol = (String) session.getAttribute("rolUsuario");
+
+        if (rol == null || !rol.equals("ADMINISTRADOR")) {
+            return "redirect:/";
+        }
+
     public String mostrarMenu(HttpSession session, Model model) {
         long totalUsuarios = usuarioRepository.count();
         long totalPalcos = palcoService.getPalcos().size();
@@ -70,5 +75,9 @@ public class LoginController {
         return "index";
     }
 
-
+    @GetMapping("/cerrar-sesion")
+    public String cerrarSesion(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
 }
