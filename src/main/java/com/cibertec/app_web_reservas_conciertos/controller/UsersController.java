@@ -32,7 +32,7 @@ public class UsersController {
 
         if (rol == null || !rol.equals("ADMINISTRADOR")) {
             System.out.println("❌ Rol nulo o no ADMINISTRADOR. Redirigiendo a /acceso-denegado");
-            return "redirect:/acceso-denegado";
+            return "redirect:/";
         }
 
         String nombreUsuario = (String) session.getAttribute("usuarioLogueado");

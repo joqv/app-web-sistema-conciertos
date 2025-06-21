@@ -8,8 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
             background-color: #f0f2f5;
+        }
+
+        nav {
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            font-family: 'Poppins', sans-serif;
         }
 
         .container.mt-5 {
@@ -170,19 +177,16 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-dark bg-dark px-4">
-    <span class="navbar-brand mb-0 h4">Panel de Administración</span>
-    <span class="text-white" th:text="'Bienvenido, ' + ${usuarioLogueado}">Bienvenido, Admin</span>
-</nav>
+<nav th:replace="~{componentes/_fragmentos :: navPrincipalFragment}"></nav>
 
 <div class="container mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">Listado de Reservas</h2>
         <div>
-            <a th:href=@{/nueva-reserva} type="button" class="btn btn-primary">+ Nueva reserva</a>
-            <a th:href=@{/reportes/lista-reservas-pdf} type="button" class="btn btn-danger mx-1" target="_blank">Exportar PDF</a>
-            <a th:href=@{/inicio} type="button" class="btn btn-secondary mx-1"> < Regresar</a>
+            <a th:href=@{/nueva-reserva} type="button" class="btn btn-primary btn-sm">+ Nueva reserva</a>
+            <a th:href=@{/reportes/lista-reservas-pdf} type="button" class="btn btn-danger btn-sm mx-1" target="_blank">Exportar PDF</a>
+            <a th:href=@{/inicio} type="button" class="btn btn-secondary btn-sm mx-1"> < Regresar</a>
         </div>
     </div>
 

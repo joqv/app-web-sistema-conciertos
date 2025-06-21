@@ -5,13 +5,6 @@ body {
     padding: 0;
 }
 
-.navbar {
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .container {
     padding-top: 40px;
 }
@@ -36,7 +29,7 @@ h3 {
     vertical-align: middle;
 }
 
-.btn {
+.btns {
     font-size: 0.9rem;
     padding: 6px 12px;
     border-radius: 6px;

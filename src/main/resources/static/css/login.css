@@ -19,7 +19,7 @@ body {
 
 .login-box {
     background: rgba(255, 255, 255, 0.92);
-    padding: 2rem;
+    padding: 2rem 2rem 0.5rem 2rem;
     border-radius: 16px;
     width: 100%;
     max-width: 400px;
