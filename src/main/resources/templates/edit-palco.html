@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Palco</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-5">
+    <h3 class="mb-4">Editar Palco</h3>
+
+    <form th:action="@{/update}" th:object="${palco}" method="post">
+
+        <!-- Campo oculto para o ID -->
+        <input type="hidden" th:field="*{idPalco}"/>
+
+        <div class="form-group">
+            <label for="nombrePalco">Nombre del Palco:</label>
+            <input type="text" id="nombrePalco" th:field="*{nombrePalco}" class="form-control" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="aforo">Aforo:</label>
+            <input type="number" id="aforo" th:field="*{aforo}" min="1" class="form-control" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="ubicacion">Localización:</label>
+            <input type="text" id="ubicacion" th:field="*{ubicacion}" class="form-control" required/>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Guardar</button>
+        <a th:href="@{/list-palco}" class="btn btn-secondary mt-3 ml-2">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
