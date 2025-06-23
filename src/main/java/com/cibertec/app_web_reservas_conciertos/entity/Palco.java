@@ -24,7 +24,6 @@ public class Palco {
     }
 
     public Palco(Long idPalco, String ubicacion, Integer aforo, String nombrePalco) {
-        this.idPalco = idPalco;
         this.ubicacion = ubicacion;
         this.aforo = aforo;
         this.nombrePalco = nombrePalco;
