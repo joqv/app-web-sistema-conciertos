@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Reservas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+
+        nav {
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container.mt-5 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        h2.mb-0 {
+            color: #344767;
+            font-weight: 600;
+        }
+
+        .reservation-card {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            background-color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        .reservation-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #4CAF50;
+            background-image: linear-gradient(to right, #55de25 0%, #66BB6A 100%);
+            color: white;
+            border-bottom: none;
+            padding: 1rem 1.25rem;
+            font-size: 1.05rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            color: #212529;
+            font-size: 1.15rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            font-size: 1.3rem;
+            margin-right: 0.75rem;
+            color: #4CAF50;
+        }
+
+        .card-text {
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-text strong {
+            color: #344767;
+            min-width: 4.5rem;
+            display: inline-block;
+        }
+
+        .card-text i {
+            margin-right: 0.5rem;
+            color: #8898aa;
+        }
+
+        .card-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.6rem;
+            margin-top: auto;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+
+        .btn-action-icon {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-primary.btn-action-icon {
+            color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-outline-primary.btn-action-icon:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-outline-warning.btn-action-icon {
+            color: #ffc107;
+            border-color: #ffc107;
+        }
+        .btn-outline-warning.btn-action-icon:hover {
+            background-color: #ffc107;
+            color: #343a40;
+        }
+
+        .btn-outline-danger.btn-action-icon {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-outline-danger.btn-action-icon:hover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .badge-estado {
+            font-size: 0.85rem;
+            padding: 0.4em 0.8em;
+            border-radius: 0.7rem;
+            font-weight: 600;
+            min-width: 6rem;
+            text-align: center;
+        }
+
+        .badge-success { background-color: #28a745; color: white; }
+        .badge-warning { background-color: #ffc107; color: #343a40; }
+        .badge-danger { background-color: #dc3545; color: white; }
+        .badge-info { background-color: #17a2b8; color: white; }
+
+        .alert-info {
+            background-color: #e0f7fa;
+            color: #006064;
+            border-color: #b2ebf2;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="~{componentes/_fragmentos :: navPrincipalFragment}"></nav>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Listado de Reservas</h2>
+        <div>
+            <a th:href=@{/nueva-reserva} type="button" class="btn btn-primary btn-sm">+ Nueva reserva</a>
+            <a th:href=@{/reportes/lista-reservas-pdf} type="button" class="btn btn-danger btn-sm mx-1" target="_blank">Exportar PDF</a>
+            <a th:href=@{/inicio} type="button" class="btn btn-secondary btn-sm mx-1"> < Regresar</a>
+        </div>
+    </div>
+
+    <div class="row" th:if="${#lists.isEmpty(reservaList)}">
+        <div class="col-12">
+            <div class="alert alert-info text-center" role="alert">
+                <i class="bi bi-info-circle-fill me-2"></i>No hay reservas disponibles en este momento.
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="col" th:each="reserva : ${reservaList}">
+            <div class="card reservation-card h-100">
+                <div class="card-header">
+                    <span>Reserva #<span th:text="${reserva.idReserva}"></span></span>
+                    <span th:classappend="${reserva.estado == 'Confirmada' ? 'badge-success' : (reserva.estado == 'Pendiente' ? 'badge-warning' : (reserva.estado == 'Cancelada' ? 'badge-danger' : 'badge-info'))}" class="badge badge-estado" th:text="${reserva.estado}"></span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-person-circle"></i><span th:text="${reserva.usuario.nombreUsuario}"></span></h5>
+                    <p class="card-text"><strong><i class="bi bi-building"></i>RUC: </strong> <span class="px-1" th:text="${reserva.usuario.ruc}"></span></p>
+                    <p class="card-text"><strong><i class="bi bi-geo-alt"></i>Palco: </strong> <span class="px-1" th:text="${reserva.palco.nombrePalco}"></span></p>
+                    <p class="card-text"><strong><i class="bi bi-calendar-event"></i>Fecha: </strong> <span class="px-1" th:text=" ${reserva.fecha}"></span></p>
+                    <p class="card-text"><strong><i class="bi bi-clock-fill"></i>Hora: </strong> <span class="px-1" th:text=" ${reserva.horaInicio} + ' - ' + ${reserva.horaFinal}"></span></p>
+                </div>
+                <div class="card-footer">
+                    <a th:href="@{/ver-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-primary btn-action-icon" title="Ver detalles"><i class="bi bi-eye"></i></a>
+                    <a th:href="@{/editar-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-warning btn-action-icon" title="Editar reserva"><i class="bi bi-pencil"></i></a>
+                    <a th:href="@{/eliminar-reserva/{id}(id=${reserva.idReserva})}" class="btn btn-outline-danger btn-action-icon" title="Eliminar reserva" onclick="return confirm('¿Deseas eliminar esta reservación?');"><i class="bi bi-trash3"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

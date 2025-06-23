@@ -1,6 +1,7 @@
 package com.cibertec.app_web_reservas_conciertos.entity;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,6 +24,7 @@ public class Reserva {
     private Palco palco;
 
     @Column(name = "fecha")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fecha;
 
     @Column(name = "hora_inicio")
@@ -34,41 +36,45 @@ public class Reserva {
     @Column(name = "estado")
     private String estado;
 
+    @Column(name = "activo")
+    private String activo;
+
     public Reserva() {
     }
 
-    public Reserva(Long idReserva, String estado, LocalTime horaFinal, LocalTime horaInicio, LocalDate fecha, Palco palco, Usuario usuario) {
+    public Reserva(Long idReserva, Palco palco, Usuario usuario, LocalDate fecha, LocalTime horaInicio, String activo, String estado, LocalTime horaFinal) {
         this.idReserva = idReserva;
+        this.palco = palco;
+        this.usuario = usuario;
+        this.fecha = fecha;
+        this.horaInicio = horaInicio;
+        this.activo = activo;
         this.estado = estado;
         this.horaFinal = horaFinal;
-        this.horaInicio = horaInicio;
-        this.fecha = fecha;
-        this.palco = palco;
-        this.usuario = usuario;
     }
 
-    public Long getIdReserva() {
-        return idReserva;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setIdReserva(Long idReserva) {
-        this.idReserva = idReserva;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public LocalTime getHoraFinal() {
+        return horaFinal;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setHoraFinal(LocalTime horaFinal) {
+        this.horaFinal = horaFinal;
     }
 
-    public Palco getPalco() {
-        return palco;
+    public String getActivo() {
+        return activo;
     }
 
-    public void setPalco(Palco palco) {
-        this.palco = palco;
+    public void setActivo(String activo) {
+        this.activo = activo;
     }
 
     public LocalTime getHoraInicio() {
@@ -87,25 +93,33 @@ public class Reserva {
         this.fecha = fecha;
     }
 
-    public LocalTime getHoraFinal() {
-        return horaFinal;
+    public Palco getPalco() {
+        return palco;
     }
 
-    public void setHoraFinal(LocalTime horaFinal) {
-        this.horaFinal = horaFinal;
+    public void setPalco(Palco palco) {
+        this.palco = palco;
     }
 
-    public String getEstado() {
-        return estado;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Long getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(Long idReserva) {
+        this.idReserva = idReserva;
     }
 
     @Override
     public String toString() {
-        return "Reservas{" +
+        return "Reserva{" +
                 "idReserva=" + idReserva +
                 ", usuario=" + usuario +
                 ", palco=" + palco +
@@ -113,6 +127,7 @@ public class Reserva {
                 ", horaInicio=" + horaInicio +
                 ", horaFinal=" + horaFinal +
                 ", estado='" + estado + '\'' +
+                ", activo='" + activo + '\'' +
                 '}';
     }
 }

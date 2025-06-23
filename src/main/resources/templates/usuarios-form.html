@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${titulo}">Formulario Usuario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/formulario.css}">
+</head>
+<body>
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #f4f6f9;">
+  <div class="card p-4 shadow" style="width: 100%; max-width: 500px;">
+    <h3 class="text-center mb-4" th:text="${titulo}">Formulario de Usuario</h3>
+
+    <form th:action="@{/admin/usuarios/save}" th:object="${usuario}" method="post">
+
+      <input type="hidden" th:field="*{idUsuario}" />
+      <input type="hidden" th:field="*{estado}" />
+
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" th:field="*{nombreUsuario}" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" th:field="*{email}" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Teléfono</label>
+        <input type="text" class="form-control" th:field="*{telefono}">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">RUC</label>
+        <input type="text" class="form-control" th:field="*{ruc}">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control" th:field="*{password}">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Rol</label>
+        <select class="form-select" th:field="*{rol}">
+          <option value="" disabled>Seleccione un rol</option>
+          <option th:each="r : ${roles}" th:value="${r.nombre}" th:text="${r.nombre}"></option>
+        </select>
+      </div>
+
+      <div class="d-flex justify-content-between mt-4">
+        <button type="submit" class="btn btn-primary w-50 me-2">Guardar</button>
+        <a th:href="@{/admin/usuarios}" class="btn btn-secondary w-50">Cancelar</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
