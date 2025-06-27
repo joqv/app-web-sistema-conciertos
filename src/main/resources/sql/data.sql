@@ -1,3 +1,4 @@
+
 USE db_sistema_conciertos;
 
 INSERT INTO roles (nombre) VALUES ('ADMINISTRADOR'), ('USUARIO');
