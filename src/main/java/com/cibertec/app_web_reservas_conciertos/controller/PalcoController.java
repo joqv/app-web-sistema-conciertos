@@ -52,14 +52,14 @@ public class PalcoController {
     // Remover palco
     @GetMapping("/remove/{id}")
     public String removerPalco(@PathVariable Long id, RedirectAttributes redirectAttrs) {
-        try {
-            palcoService.deletePalco(id);
-            redirectAttrs.addFlashAttribute("mensaje", "Palco eliminado correctamente.");
-        } catch (DataIntegrityViolationException e) {
-            redirectAttrs.addFlashAttribute("error", "No puede eliminarse ese palco. Aún hay reservas activas.");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        boolean fueDesactivado = palcoService.deletePalco(id);
+
+        if (!fueDesactivado) {
+            redirectAttrs.addFlashAttribute("error", "No se puede desactivar el palco: tiene reservas activas.");
+        } else {
+            redirectAttrs.addFlashAttribute("mensaje", "Palco desactivado correctamente.");
         }
+
         return "redirect:/list-palco";
     }
 

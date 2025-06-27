@@ -8,4 +8,6 @@ import java.util.List;
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
     public List<Reserva> findByActivo(String activo);
+
+    boolean existsByPalco_IdPalcoAndActivo(Integer idPalco, String estado);
 }

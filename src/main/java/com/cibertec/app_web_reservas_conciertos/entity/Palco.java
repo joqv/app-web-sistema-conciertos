@@ -20,6 +20,9 @@ public class Palco {
     @Column(name = "ubicacion")
     private String ubicacion;
 
+    @Column(name = "estado")
+    private String estado= "ACTIVO";
+
     public Palco() {
     }
 
@@ -59,5 +62,13 @@ public class Palco {
 
     public void setNombrePalco(String nombrePalco) {
         this.nombrePalco = nombrePalco;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
