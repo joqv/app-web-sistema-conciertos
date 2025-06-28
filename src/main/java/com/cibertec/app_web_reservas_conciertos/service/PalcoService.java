@@ -1,10 +1,15 @@
 package com.cibertec.app_web_reservas_conciertos.service;
 
+import com.cibertec.app_web_reservas_conciertos.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.cibertec.app_web_reservas_conciertos.entity.Palco;
 import com.cibertec.app_web_reservas_conciertos.repository.PalcoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
+
+
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +19,14 @@ public class PalcoService {
 
     @Autowired
     private PalcoRepository palcoRepository;
+    @Autowired
+    private ReservaRepository reservaRepository;
 
+    @Transactional(readOnly = true)
     public List<Palco> getPalcos() {
-        return palcoRepository.findAll();
+
+        //return palcoRepository.findAll();
+        return palcoRepository.listarPalcosActivos();
     }
 
     public Palco getPalco(Long idPalco) throws Exception {
@@ -61,8 +71,24 @@ public class PalcoService {
         palcoRepository.save(existente);
     }
 
-    public void deletePalco(Long idPalco) throws Exception {
-        Palco palco = getPalco(idPalco);
-        palcoRepository.delete(palco);
-    }
+   // public void deletePalco(Long idPalco) throws Exception {
+     //   Palco palco = getPalco(idPalco);
+    //    palcoRepository.delete(palco);
+    //}
+   public boolean deletePalco(long id) {
+       boolean tieneReservasActivas = reservaRepository.existsByPalco_IdPalcoAndActivo((int) id, "ACTIVO");
+
+       if (tieneReservasActivas) {
+           return false;
+       }
+
+       Optional<Palco> optionalPalco = palcoRepository.findById(id);
+       if (optionalPalco.isPresent()) {
+           Palco palco = optionalPalco.get();
+           palco.setEstado("DESACTIVADO");
+           palcoRepository.save(palco);
+       }
+        return true;
+   }
+
 }

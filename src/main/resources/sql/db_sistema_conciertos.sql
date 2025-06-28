@@ -1,3 +1,7 @@
+create schema db_sistema_conciertos;
+
+use db_sistema_conciertos;
+
 CREATE TABLE roles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL
@@ -18,7 +22,8 @@ CREATE TABLE palcos (
     id_palco INT PRIMARY KEY AUTO_INCREMENT,
     nombre_palco VARCHAR(255) NOT NULL,
     aforo INT NOT NULL,
-    ubicacion VARCHAR(255)
+    ubicacion VARCHAR(255),
+    estado VARCHAR(20) DEFAULT 'ACTIVO'
 );
 
 CREATE TABLE reservas (
@@ -41,6 +46,17 @@ DELIMITER //
 CREATE PROCEDURE listarUsuariosActivos()
 BEGIN
     SELECT * FROM usuarios WHERE estado = 'ACTIVO';
+END //
+
+DELIMITER ;
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE listarPalcosActivos()
+BEGIN
+    SELECT * FROM palcos WHERE estado = 'ACTIVO';
 END //
 
 DELIMITER ;
