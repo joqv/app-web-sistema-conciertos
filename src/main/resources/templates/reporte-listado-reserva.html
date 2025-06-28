@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Reporte de Reservas</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            font-size: 10pt;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 20pt;
+            margin-bottom: 5px;
+        }
+        .header p {
+            color: #7f8c8d;
+            font-size: 8pt;
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 9pt;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        th {
+            background-color: #34495e;
+            color: #ffffff;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        table thead th:nth-child(1),
+        table tbody td:nth-child(1) {
+            width: 5%;
+        }
+        table thead th:nth-child(2),
+        table tbody td:nth-child(2) {
+            width: 15%;
+        }
+        table thead th:nth-child(3),
+        table tbody td:nth-child(3) {
+            width: 20%;
+        }
+        table thead th:nth-child(4),
+        table tbody td:nth-child(4) {
+            width: 15%;
+        }
+        table thead th:nth-child(5),
+        table tbody td:nth-child(5) {
+            width: 15%;
+        }
+        table thead th:nth-child(6),
+        table tbody td:nth-child(6) {
+            width: 15%;
+        }
+        table thead th:nth-child(7),
+        table tbody td:nth-child(7) {
+            width: 15%;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr.no-data td {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+            padding: 20px;
+            white-space: normal;
+        }
+
+        .container-logo {
+            text-align: start;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding-top: 5px;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="container-logo">
+        <img src="images/logoticket.png" alt="er" width="50px" height="50px"/>
+    </div>
+    <h1>Reporte de Reservas</h1>
+    <p>Generado el: <span th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy HH:mm:ss')}"></span></p>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Palco</th>
+        <th>Fecha</th>
+        <th>Hora Inicio</th>
+        <th>Hora Final</th>
+        <th>Estado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reserva: ${reservas}">
+        <td th:text="${reserva.idReserva}"></td>
+        <td th:text="${reserva.usuario.nombreUsuario}"></td>
+        <td th:text="${reserva.palco.nombrePalco}"></td>
+        <td th:text="${reserva.fecha}"></td>
+        <td th:text="${reserva.horaInicio}"></td>
+        <td th:text="${reserva.horaFinal}"></td>
+        <td th:text="${reserva.estado}"></td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(reservas)}" class="no-data">
+        <td colspan="7">No hay reservas disponibles.</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

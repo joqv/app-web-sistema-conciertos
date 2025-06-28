@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<body>
+
+  <nav th:fragment="navPrincipalFragment" class="navbar navbar-dark navbar-expand-lg bg-dark px-4 shadow">
+    <div class="container-fluid d-flex justify-content-between">
+        <span class="navbar-brand mb-0 h1">🎟️ Panel de Administración</span>
+        <div>
+            <span class="navbar-text text-light fw-semibold" th:if="${usuarioLogueado != null}">
+                Bienvenido, <span th:text="${usuarioLogueado}">Usuario</span>
+            </span>
+            <a th:href="@{/cerrar-sesion}" class="btn btn-danger btn-sm ms-4"><strong>Cerrar Sesión</strong></a>
+        </div>
+    </div>
+  </nav>
+
+  <nav th:fragment="navPrincipalUsuarioFragment" class="navbar navbar-dark navbar-expand-lg bg-dark px-4 shadow">
+      <div class="container-fluid d-flex justify-content-between">
+          <span class="navbar-brand mb-0 h1">🎟️ Panel de Usuario</span>
+          <div>
+            <span class="navbar-text text-light fw-semibold" th:if="${usuarioLogueado != null}">
+                Bienvenido, <span th:text="${usuarioLogueado}">Usuario</span>
+            </span>
+              <a th:href="@{/cerrar-sesion}" class="btn btn-danger btn-sm ms-4"><strong>Cerrar Sesión</strong></a>
+          </div>
+      </div>
+  </nav>
+
+</body>
+</html>
